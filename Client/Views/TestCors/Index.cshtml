@@ -1,0 +1,23 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name = "viewport" content="width=device-width"/>
+    <title>Index</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+</body>
+</html>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $.ajax({
+        url: "https://localhost:44375/api/employee/testcors",
+        success: function (result){
+            console.log(result);
+        }
+    })
+</script>
