@@ -6074,11 +6074,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\acer\\Documents\\cobacoba\\API\\Client\\Client.csproj",
+      "projectUniqueName": "C:\\Users\\acer\\Documents\\Produce-API\\Client\\Client.csproj",
       "projectName": "Client",
-      "projectPath": "C:\\Users\\acer\\Documents\\cobacoba\\API\\Client\\Client.csproj",
+      "projectPath": "C:\\Users\\acer\\Documents\\Produce-API\\Client\\Client.csproj",
       "packagesPath": "C:\\Users\\acer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\acer\\Documents\\cobacoba\\API\\Client\\obj\\",
+      "outputPath": "C:\\Users\\acer\\Documents\\Produce-API\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\acer\\AppData\\Roaming\\NuGet\\NuGet.Config",
