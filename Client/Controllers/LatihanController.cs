@@ -22,5 +22,9 @@ namespace Client.Controllers
         {
             return View();
         }
+        public IActionResult Employee()
+        {
+            return View();
+        }
     }
 }

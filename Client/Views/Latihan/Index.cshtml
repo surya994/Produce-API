@@ -1,117 +1,79 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
-    Layout = "_LatihanLayout";
+    ViewData["Title"] = "Latihan";
 }
-<div class="jumbotron text-center" style="margin-bottom:0">
-    <h1>Example</h1>
-</div>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-    <a class="navbar-brand" href="#">Logo</a>
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link 1</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link 2</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link 3</a>
-        </li>
-    </ul>
-</nav>
 <div class="container my-3">
-    <div class="row">
-        <div class="col-6">
-            <div class="card my-2">
-                <div class="card-body">
-                    <p>
-                        Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-                        Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-                        Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-                        Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-                        Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-                        Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-                        Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-                        Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-                        Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card my-2">
-                        <div class="card-body">
-                            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-                            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-                            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-                            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="card my-2">
-                        <div class="card-body">
-                            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-                            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-                            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-                            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover table-sm nowrap" width=100% id="tableSW">
+            <thead class="thead-dark">
+                <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
     </div>
 </div>
-<footer class="footer bg-dark text-light">
-    <div class="container">
-        <div class="row p-3 border-bottom">
-            <div class="col">
-                Footer
+<div class="modal" id="detilModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title">Detail Pokemon</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-        </div>
-        <div class="row p-3">
-            <div class="col-6">
-                <p>
-                    Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-                </p>
-            </div>
-            <div class="col-6">
-                <div class="row">
-                    <div class="col-6">
-                        <a class="link" href="#">Link Lain Ke-1</a>
-                        <a class="link" href="#">Link Lain Ke-2</a>
-                        <a class="link" href="#">Link Lain Ke-3</a>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p id="detilPoke"></p>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#infoTab">Informasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#statusTab">Status</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#skillTab">Ability</a>
+                    </li>
+                </ul>   
+                <div class="tab-content">
+                    <div class="tab-pane container active p-0" id="infoTab">
+                        <table class="table table-bordered table-sm table-hover m-0" id="infoPoke"></table>
                     </div>
-                    <div class="col-6">
-                        <div class="row">
-                            <div class="col-12">
-                                <a href="#">Link ke-1</a>
-                                <a href="#">Link ke-2</a>
-                                <a href="#">Link ke-3</a>
-                            </div>
-                            <div class="col-12">
-                                &copy; 2022 - Client
-                            </div>
-                        </div>
+                    <div class="tab-pane container fade p-0" id="statusTab">
+                        <table class="table table-bordered table-sm table-hover m-0">
+                            <thead>
+                                <tr>
+                                    <th width=30%>Stat</th>
+                                    <th width=5%>Effort</th>
+                                    <th>Base Stat</th>
+                                </tr>
+                            </thead>
+                            <tbody id="statusPoke">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane container fade p-0" id="skillTab">
+                        <table class="table table-bordered table-sm table-hover m-0">
+                            <thead>
+                                <tr>
+                                    <th width=30%>Skill</th>
+                                    <th>Effect</th>
+                                </tr>
+                            </thead>
+                            <tbody id="skillPoke">
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+         </div>
     </div>
-</footer>
-@*<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
-    <a class="navbar-brand" href="#">Logo</a>
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link 1</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link 2</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link 3</a>
-        </li>
-    </ul>
-</nav>*@
+</div>

@@ -44,7 +44,7 @@ namespace API.Controllers
             }
             return Ok(new { status = 200, result = employeeRepository.GetMaster(nik), message = "Data Ditemukan" });
         }
-        [Authorize(Roles ="Director,Manager")]
+        /*[Authorize(Roles ="Director,Manager")]*/
         [HttpGet("master")]
         public ActionResult GetMasterData()
         {
