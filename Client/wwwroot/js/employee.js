@@ -95,8 +95,8 @@ var tableEmployee = $('#tableEmployee').DataTable({
         {
             "data": "nik",
             "render": function (data, type, row) {
-                return `<button type="button" class="btn btn-sm btn-danger" onClick="Delete('${data}')"><i class="fas fa-fw fa-trash-alt"></i></button></td>
-                            <button type="button" class="btn btn-sm btn-warning" onClick="Edit('${data}')"><i class="fas fa-fw fa-edit"></i></button></td>`
+                return `<button type="button" class="btn btn-sm btn-danger" onClick="Delete('${data}')" data-toggle="tooltip" title="Hapus Data"><i class="fas fa-fw fa-trash-alt"></i></button></td>
+                            <button type="button" class="btn btn-sm btn-warning" onClick="Edit('${data}')" data-toggle="tooltip" title="Edit Data"><i class="fas fa-fw fa-edit"></i></button></td>`
             }
         },
     ]

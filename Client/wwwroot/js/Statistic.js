@@ -20,6 +20,9 @@ function GenderStat() {
                 series: [male, female],
                 chart: {
                     type: 'pie',
+                    toolbar: {
+                        show: true
+                    },
                 },
                 labels: ['Male', 'Female'],
                 responsive: [{
@@ -74,7 +77,7 @@ function UniversityStat() {
         }],
         chart: {
             type: 'bar',
-            height: 150
+            height: 200
         },
         plotOptions: {
             bar: {
