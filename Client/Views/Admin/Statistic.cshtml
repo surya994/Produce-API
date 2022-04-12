@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Statistic";
+    Layout = "_AdminLayout";
+    @section CSS{
+         <script src="~/lib/apexcharts/apexcharts.min.js"></script>
+    }
+    @section Scripts{
+        <script src="~/js/Statistic.js" asp-append-version="true"></script>
+    }
+}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Statistic</h1>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">Gender</div>
+            <div class="card-body">
+                <div id="chartGender"></div>
+            </div>
+            <div class="card-footer"></div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">University</div>
+            <div class="card-body">
+                <div id="chartUniversity"></div>
+            </div>
+            <div class="card-footer"></div>
+        </div>
+    </div>
+</div>
+ 

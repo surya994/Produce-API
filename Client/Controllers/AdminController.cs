@@ -9,16 +9,24 @@ using System.Threading.Tasks;
 
 namespace Client.Controllers
 {
-    public class LatihanController : Controller
+    public class AdminController : Controller
     {
-        private readonly ILogger<LatihanController> _logger;
+        private readonly ILogger<AdminController> _logger;
 
-        public LatihanController(ILogger<LatihanController> logger)
+        public AdminController(ILogger<AdminController> logger)
         {
             _logger = logger;
         }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+        public IActionResult Employee()
+        {
+            return View();
+        }
+        public IActionResult Statistic()
         {
             return View();
         }

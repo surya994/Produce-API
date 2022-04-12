@@ -3,7 +3,7 @@ using API.Models;
 using API.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Linq;
 
 namespace API.Controllers
 {
@@ -29,6 +29,20 @@ namespace API.Controllers
             }
             accountRepository.Register(registerVM);
             return Ok(new { status = 200, message = "Register Berhasil" });
+        }
+        [HttpPut("master/update")]
+        public ActionResult Update(UpdateMasterVM updateMasterVM)
+        {
+            if (accountRepository.GetEmail(updateMasterVM.Email, updateMasterVM.NIK) != null)
+            {
+                return BadRequest(new { status = 400, message = "Email sudah Terdaftar" });
+            }
+            if (accountRepository.GetPhone(updateMasterVM.Phone, updateMasterVM.NIK) != null)
+            {
+                return BadRequest(new { status = 400, message = "Phone sudah Terdaftar" });
+            }
+            accountRepository.Edit(updateMasterVM);
+            return Ok(new { status = 200, message = "Data Berhasil Diupdate" });
         }
         [HttpPost("login")]
         public ActionResult Login(LoginVM loginVM)

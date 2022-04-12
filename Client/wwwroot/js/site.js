@@ -242,6 +242,7 @@ $(document).ready(function () {
             data: JSON.stringify(obj),
         }).done((result) => {
             tableEmployee.ajax.reload();
+            $(".needs-validation").removeClass('was-validated');
             $('#formInput').find('form').trigger('reset');
             $('#formInput').modal('hide');
             Swal.fire(

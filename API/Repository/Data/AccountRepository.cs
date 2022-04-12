@@ -74,6 +74,34 @@ namespace API.Repository
             myContext.SaveChanges();
             return 1;
         }
+        public int Edit(UpdateMasterVM updateMasterVM)
+        {
+            var emp = new Employee
+            {
+                NIK = updateMasterVM.NIK,
+                FirstName = updateMasterVM.FirstName,
+                LastName = updateMasterVM.LastName,
+                Phone = updateMasterVM.Phone,
+                BirthDate = updateMasterVM.BirthDate,
+                Salary = updateMasterVM.Salary,
+                Email = updateMasterVM.Email,
+                Gender = (Gender)updateMasterVM.Gender
+
+            };
+            myContext.Entry(emp).State = EntityState.Modified;
+            myContext.SaveChanges();
+            var edu = new Education
+            {
+                Id = updateMasterVM.EducationId,
+                Degree = updateMasterVM.Degree,
+                GPA = updateMasterVM.GPA,
+                UniversityId = updateMasterVM.UniversityId
+            };
+            myContext.Entry(edu).State = EntityState.Modified;
+            myContext.SaveChanges();
+            return 1;
+        }
+
         public int Login(LoginVM loginVM)
         {
             var emp = myContext.Employees.FirstOrDefault(x => x.Email == loginVM.Email);
@@ -135,9 +163,19 @@ namespace API.Repository
         {
             return myContext.Employees.FirstOrDefault(x => x.Email == email);
         }
+        public Employee GetEmail(string email, string nik)
+        {
+            string oldEmail = myContext.Employees.AsNoTracking().FirstOrDefault(x => x.NIK == nik).Email;
+            return myContext.Employees.FirstOrDefault(x => x.Email != oldEmail && x.Email == email);
+        }
         public Employee GetPhone(string phone)
         {
             return myContext.Employees.FirstOrDefault(x => x.Phone == phone);
+        }
+        public Employee GetPhone(string phone, string nik)
+        {
+            string oldPhone = myContext.Employees.AsNoTracking().FirstOrDefault(x => x.NIK == nik).Phone;
+            return myContext.Employees.FirstOrDefault(x => x.Phone != oldPhone && x.Phone == phone);
         }
         public int GetOTP(string email)
         {

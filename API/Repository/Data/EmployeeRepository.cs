@@ -79,6 +79,34 @@ namespace API.Repository
                 select new
                 {
                     emp.NIK,
+                    emp.FirstName, 
+                    emp.LastName,
+                    emp.Gender,
+                    emp.BirthDate,
+                    emp.Phone,
+                    emp.Email,
+                    emp.Salary,
+                    tmp1.EducationId,
+                    tmp2.Degree,
+                    tmp2.GPA,
+                    tmp2.UniversityId
+                }).ToList();
+            return result;
+        }
+        /*public IEnumerable GetMaster(string nik)
+        {
+            var result = (
+                from emp in myContext.Employees
+                join pro in myContext.Profilings on emp.NIK equals pro.NIK into temp1
+                from tmp1 in temp1.DefaultIfEmpty()
+                join edu in myContext.Educations on tmp1.EducationId equals edu.Id into temp2
+                from tmp2 in temp2.DefaultIfEmpty()
+                join unv in myContext.Universities on tmp2.UniversityId equals unv.Id into temp3
+                from tmp3 in temp3.DefaultIfEmpty()
+                where emp.NIK == nik
+                select new
+                {
+                    emp.NIK,
                     FullName = emp.FirstName + " " + emp.LastName,
                     Gender = emp.Gender.ToString(),
                     emp.BirthDate,
@@ -91,7 +119,7 @@ namespace API.Repository
                     UniversityName = tmp3.Name
                 }).ToList();
             return result;
-        }
+        }*/
         /*public List<MasterDataVM> GetMaster()
         {
              var result = (

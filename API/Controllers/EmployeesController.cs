@@ -34,7 +34,7 @@ namespace API.Controllers
             employeeRepository.Insert(employee);
             return Ok(new { status = 200, message = "Data Berhasil Ditambahkan" });
         }
-        [Authorize(Roles = "Director,Manager")]
+        /*[Authorize(Roles = "Director,Manager")]*/
         [HttpGet("master/{nik}")]
         public ActionResult GetMasterData(string nik)
         {
