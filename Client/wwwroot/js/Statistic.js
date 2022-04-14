@@ -5,14 +5,14 @@ $(document).ready(function () {
 })
 function GenderStat() {
     $.ajax({
-        url: 'https://localhost:44375/api/employee/master',
+        url: '/employees/GetMasterAll',
         success: function (data) {
             var male = 0;
             var female = 0;
-            for (var i = 0; i < data.result.length; i++) {
-                if (data.result[i].gender == "Male") {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].gender == "Male") {
                     male += 1;
-                } else if (data.result[i].gender == "Female") {
+                } else if (data[i].gender == "Female") {
                     female += 1;
                 }
             }
@@ -46,15 +46,15 @@ function UniversityStat() {
     var univCount = [];
     $.ajax({
         async :false,
-        url: 'https://localhost:44375/api/university',
+        url: '/universities/GetAll',
         success: function (data1) {
             $.ajax({
                 async: false,
-                url: 'https://localhost:44375/api/employee/master',
+                url: '/employees/GetMasterAll',
                 success: function (data2) {
-                    $.each(data1.result, function (key1, val1) {
+                    $.each(data1, function (key1, val1) {
                         var count = 0;
-                        $.each(data2.result, function (key2, val2) {
+                        $.each(data2, function (key2, val2) {
                             if (val2.universityName == val1.name) {
                                 count += 1;
                             }

@@ -16,29 +16,6 @@ namespace API.Repository
         {
             this.myContext = myContext;
         }
-        public Employee GetEmail(string email)
-        {
-            return myContext.Employees.FirstOrDefault(x => x.Email == email);
-        }
-        public Employee GetPhone(string phone)
-        {
-            return myContext.Employees.FirstOrDefault(x => x.Phone == phone);
-        }
-        public string GenerateNIK()
-        {
-            string year = DateTime.Now.ToString("yyyy");
-            var cari = myContext.Employees.OrderByDescending(x => x.NIK).FirstOrDefault(x => x.NIK.StartsWith(year));
-            if (cari == null)
-            {
-                return year + "001";
-            }
-            else
-            {
-                int nik = Convert.ToInt32(cari.NIK);
-                nik++;
-                return Convert.ToString(nik);
-            }
-        }
         public IEnumerable GetMaster()
         {
             var result = (
@@ -52,7 +29,8 @@ namespace API.Repository
                 select new
                 {
                     emp.NIK,
-                    FullName = emp.FirstName + " " + emp.LastName,
+                    emp.FirstName,
+                    emp.LastName,
                     Gender = emp.Gender.ToString(),
                     emp.BirthDate,
                     emp.Phone,
@@ -81,7 +59,7 @@ namespace API.Repository
                     emp.NIK,
                     emp.FirstName, 
                     emp.LastName,
-                    emp.Gender,
+                    Gender = emp.Gender.ToString(),
                     emp.BirthDate,
                     emp.Phone,
                     emp.Email,
@@ -89,7 +67,7 @@ namespace API.Repository
                     tmp1.EducationId,
                     tmp2.Degree,
                     tmp2.GPA,
-                    tmp2.UniversityId
+                    UniversityName = tmp3.Name
                 }).ToList();
             return result;
         }

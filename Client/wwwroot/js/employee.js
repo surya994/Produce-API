@@ -5,9 +5,9 @@
 /* Dropdown University */
 function selectUniversity() {
     $.ajax({
-        url: 'https://localhost:44375/api/University/',
+        url: '/Universities/GetAll/',
         success: function (data) {
-            $.each(data.result, function (key, val) {
+            $.each(data, function (key, val) {
                 $('#university').append($('<option>', { value: val.id, text: val.name }));
                 $('#universityUpdate').append($('<option>', { value: val.id, text: val.name }));
             })
@@ -18,8 +18,8 @@ function selectUniversity() {
 var tableEmployee = $('#tableEmployee').DataTable({
     "processing": true,
     "ajax": {
-        "url": "https://localhost:44375/api/employee/master",
-        "dataSrc": "result"
+        "url": "/employees/GetMasterAll/",
+        "dataSrc": ""
     },
     "dom": "<'row'<'col-md-4'l><'col-md-4' B><'col-md-4'f>>" + "<'row'<'col-md-12'tr>>" + "<'row'<'col-5'i><'col-7'p>>",
     "buttons": [
@@ -68,7 +68,12 @@ var tableEmployee = $('#tableEmployee').DataTable({
             }
         },
         { "data": "nik" },
-        { "data": "fullName" },
+        {
+            "data": null,
+            "render": function (data, type, row) {
+                return `${row["firstName"]} ${row["lastName"]}`;
+            }
+        },
         { "data": "gender" },
         {
             "data": "birthDate",
@@ -126,7 +131,7 @@ function Insert() {
     obj.Email = $("#email").val();
     obj.Password = $("#password").val();
     $.ajax({
-        url: "https://localhost:44375/api/account/register",
+        url: "/accounts/register/",
         type: "POST",
         contentType: 'application/json',
         data: JSON.stringify(obj),
@@ -144,15 +149,17 @@ function Insert() {
         $(".needs-validation").removeClass('was-validated');
         $('#formInput').find('form').trigger('reset');
         $('#formInput').modal('hide');
+        console.log(result)
         Swal.fire(
             'Berhasil',
-            result.message,
+            result,
             'success'
         )
     }).fail((error) => {
+        console.log(error)
         Swal.fire(
             'Gagal',
-            error.responseJSON.message,
+            error.responseText,
             'error'
         )
     })
@@ -172,7 +179,7 @@ function Delete(nik){
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: "https://localhost:44375/api/employee/" + nik,
+                url: "/employees/delete/" + nik,
                 type: "DELETE",
                 beforeSend: function () {
                     swal.fire({
@@ -187,13 +194,13 @@ function Delete(nik){
                 tableEmployee.ajax.reload();
                 Swal.fire(
                     'Berhasil',
-                    result.message,
+                    result,
                     'success'
                 )
             }).fail((error) => {
                 Swal.fire(
                     'Gagal',
-                    error.responseJSON.message,
+                    error.responseText,
                     'error'
                 )
             })
@@ -204,20 +211,21 @@ function Delete(nik){
 function Edit(nik) {
     $('#formUpdate').modal('show');
     $.ajax({
-        url: 'https://localhost:44375/api/employee/master/' + nik,
+        url: '/employees/GetMaster/' + nik,
         success: function (data) {
-            $("#nikUpdate").val(data.result[0].nik);
-            $("#educationIdUpdate").val(data.result[0].educationId);
-            $("#firstNameUpdate").val(data.result[0].firstName);
-            $("#lastNameUpdate").val(data.result[0].lastName);
-            $("#birthDateUpdate").val($.datepicker.formatDate('yy-mm-dd', new Date(data.result[0].birthDate)));
-            $("#genderUpdate").find('option[value="' + data.result[0].gender + '"]').prop('selected', true);
-            $("#phoneUpdate").val(data.result[0].phone);
-            $("#salaryUpdate").val(data.result[0].salary);
-            $("#universityUpdate").find('option[value="' + data.result[0].universityId + '"]').prop('selected', true);
-            $("#degreeUpdate").find('option[value="' + data.result[0].degree + '"]').prop('selected', true);
-            $("#gpaUpdate").val(data.result[0].gpa);
-            $("#emailUpdate").val(data.result[0].email);
+            console.log(data)
+            $("#nikUpdate").val(data[0].nik);
+            $("#educationIdUpdate").val(data[0].educationId);
+            $("#firstNameUpdate").val(data[0].firstName);
+            $("#lastNameUpdate").val(data[0].lastName);
+            $("#birthDateUpdate").val($.datepicker.formatDate('yy-mm-dd', new Date(data[0].birthDate)));
+            $("#genderUpdate").find('option:contains("' + data[0].gender +'")').prop('selected', true);
+            $("#phoneUpdate").val(data[0].phone);
+            $("#salaryUpdate").val(data[0].salary);
+            $("#universityUpdate").find('option:contains("' + data[0].universityName + '")').prop('selected', true);
+            $("#degreeUpdate").find('option:contains("' + data[0].degree + '")').prop('selected', true);
+            $("#gpaUpdate").val(data[0].gpa);
+            $("#emailUpdate").val(data[0].email);
         }
     });
 }
@@ -247,7 +255,7 @@ function Update() {
     obj.Email = $("#emailUpdate").val();
     console.log(obj);
     $.ajax({
-        url: "https://localhost:44375/api/account/master/update",
+        url: "/accounts/update/",
         type: "PUT",
         contentType: 'application/json',
         data: JSON.stringify(obj),
@@ -266,13 +274,13 @@ function Update() {
         $('#formUpdate').modal('hide');
         Swal.fire(
             'Berhasil',
-            result.message,
+            result,
             'success'
         )
     }).fail((error) => {
         Swal.fire(
             'Gagal',
-            error.responseJSON.message,
+            error.responseText,
             'error'
         )
     })

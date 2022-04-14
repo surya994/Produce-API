@@ -1,3 +1,5 @@
+using Client.Base;
+using Client.Repositories.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,7 +25,12 @@ namespace Client
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddScoped<Address>();
+            services.AddScoped<EmployeeRepository>();
+            services.AddScoped<UniversityRepository>();
+            services.AddScoped<AccountRepository>();
+            services.AddScoped<LoginRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +57,7 @@ namespace Client
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }

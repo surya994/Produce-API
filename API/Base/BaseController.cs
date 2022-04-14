@@ -19,42 +19,38 @@ namespace API.Base
         {
             if (repository.Get().Count() == 0)
             {
-                return NotFound(new { status = 404, result = repository.Get(), message = "Data Tidak Ditemukan" });
+                return NotFound(repository.Get());
             }
-            return Ok(new { status = 200, result = repository.Get(), message = "Data Ditemukan" });
+            return Ok(repository.Get());
         }
         [HttpGet("{key}")]
         public ActionResult Get(Key key)
         {
             if (repository.Get(key) == null)
             {
-                return NotFound(new { status = 404, result = new List<Entity>(), message = "Data Tidak Ditemukan" });
+                return NotFound(repository.Get(key));
             }
-            return Ok(new { status = 200, result = repository.Get(key), message = "Data Ditemukan" });
+            return Ok(repository.Get(key));
         }
 
         [HttpPost]
         public virtual ActionResult Post(Entity entity)
         {
-            repository.Insert(entity);
-            return Ok(new { status = 200, message = "Data Berhasil Ditambahkan" });
+            return Ok(repository.Insert(entity));
         }
         [HttpPut]
         public ActionResult Update(Entity entity)
         {
-            repository.Update(entity);
-            return Ok(new { status = 200, message = "Data Berhasil Diupdate" });
+            return Ok(repository.Update(entity));
         }
         [HttpDelete("{key}")]
         public ActionResult Delete(Key key)
         {
             if (repository.Get(key) == null)
             {
-                return NotFound(new { status = 404, message = "Data Tidak Ditemukan" });
+                return NotFound(0);
             }
-            repository.Delete(key);
-            return Ok(new { status = 200, message = "Data Berhasil Dihapus" });
-
+            return Ok(repository.Delete(key));
         }
     }
 }
