@@ -28,16 +28,24 @@ namespace Client.Controllers
         [HttpPost]
         public async Task<IActionResult> Test([FromForm] LoginVM loginVM)
         {
-            var result = await repository.Login(loginVM);
-            if (result.Status == 200)
+            if (loginVM.Password == null || loginVM.Email == null)
             {
-                TempData["message"] = result.Message;
-                return View();
+                TempData["message"] = "Data Tidak Boleh kosong";
+                return RedirectToAction("index", "login");
             }
             else
             {
-                TempData["message"] = result.Message;
-                return RedirectToAction("index", "login");
+                var result = await repository.Login(loginVM);
+                if (result.Status == 200)
+                {
+                    TempData["message"] = result.Message;
+                    return View();
+                }
+                else
+                {
+                    TempData["message"] = result.Message;
+                    return RedirectToAction("index", "login");
+                }
             }
             /*return Redirect("~/login?error=true");*/
             /*return RedirectToAction("index","admin");*/
