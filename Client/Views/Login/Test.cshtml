@@ -1,4 +1,6 @@
 ﻿@{
     Layout = null;
 }
+@using Microsoft.AspNetCore.Http;
 @TempData["Message"]
+<h1>@Context.Session.GetString("JWToken")</h1>

@@ -10,6 +10,8 @@ using System.Linq;
 
 namespace API.Controllers
 {
+    /*[Authorize(Roles = "Director,Manager")]*/
+    
     [Route("api/[controller]")]
     [ApiController]
     public class EmployeeController : BaseController<Employee, EmployeeRepository, string>
@@ -19,6 +21,7 @@ namespace API.Controllers
         {
             this.employeeRepository = employeeRepository;
         }
+        [Authorize]
         [HttpGet("master")]
         public ActionResult GetMasterData()
         {
@@ -38,8 +41,6 @@ namespace API.Controllers
             }
             return Ok(employeeRepository.GetMaster(nik));
         }
-
-
         /*[HttpGet("email/{email}")]
         public ActionResult GetByEmail(string email)
         {

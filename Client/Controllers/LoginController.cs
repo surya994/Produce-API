@@ -1,11 +1,13 @@
 ﻿using API.Models;
 using Client.Models;
 using Client.Repositories.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -38,8 +40,15 @@ namespace Client.Controllers
                 var result = await repository.Login(loginVM);
                 if (result.Status == 200)
                 {
-                    TempData["message"] = result.Message;
-                    return View();
+                    var token = result.TokenId;
+
+                    var handler = new JwtSecurityTokenHandler();
+                    var jwt = handler.ReadJwtToken(token);
+                    var email = jwt.Claims.First(claim => claim.Type == "Email").Value;
+                    HttpContext.Session.SetString("Email", email);
+
+                    HttpContext.Session.SetString("JWToken", token);
+                    return RedirectToAction("index", "admin");
                 }
                 else
                 {
